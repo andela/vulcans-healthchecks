@@ -106,6 +106,7 @@ def failed_checks(request):
     else:
         prev_page = None
 
+    # Pagination must be updated in template according to context
     ctx = {
         "page": "failing_checks",
         "checks": down_checks_page,
