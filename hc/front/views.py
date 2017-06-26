@@ -29,8 +29,10 @@ def pairwise(iterable):
 
 @login_required
 def my_checks(request):
-    q = Check.objects.filter(user=request.team.user).order_by("created").exclude(status="down")
-    checks = list(q)
+    q = Check.objects.filter(user=request.team.user).order_by("created")
+
+    # Remove downed checks from main checks page.
+    checks = [check for check in list(q) if check.get_status() != 'down']
 
     counter = Counter()
     down_tags, grace_tags = set(), set()
