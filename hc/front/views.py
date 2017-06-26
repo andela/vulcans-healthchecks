@@ -17,6 +17,7 @@ from hc.api.decorators import uuid_or_400
 from hc.api.models import DEFAULT_GRACE, DEFAULT_TIMEOUT, Channel, Check, Ping
 from hc.front.forms import (AddChannelForm, AddWebhookForm, NameTagsForm,
                             TimeoutForm)
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # from itertools recipes:
@@ -65,24 +66,34 @@ def my_checks(request):
 @login_required
 def failed_checks(request):
     q = Check.objects.filter(user=request.team.user).order_by('created')
-    down_checks = [check for check in list(q) if check.get_status() == 'down']
+    down_checks_list = [check for check in list(q) if check.get_status() == 'down']
 
     counter = Counter()
     down_tags, grace_tags = set(), set()
-    for check in down_checks:
-        status = check.get_status()
+
+    down_checks = Paginator(down_checks_list, 5)
+    current_page = request.GET.get('page')
+
+    try:
+        down_checks_page = down_checks.page(current_page)
+
+    except PageNotAnInteger:
+        down_checks_page = down_checks.page(1)
+
+    except EmptyPage:
+        down_checks_page = down_checks.page(down_checks.num_pages)
+
+    for check in down_checks_page:
         for tag in check.tags_list():
             if tag == "":
                 continue
 
             counter[tag] += 1
-
-            if status == "down":
-                down_tags.add(tag)
+            down_tags.add(tag)
 
     ctx = {
         "page": "failing_checks",
-        "checks": down_checks,
+        "checks": down_checks_page,
         "tags": counter.most_common(),
         "down_tags": down_tags,
         "grace_tags": grace_tags,
