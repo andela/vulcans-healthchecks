@@ -64,12 +64,12 @@ def my_checks(request):
 
 @login_required
 def failed_checks(request):
-    q = Check.objects.filter(user=request.team.user, status="down").order_by("created")
-    checks = list(q)
+    q = Check.objects.filter(user=request.team.user).order_by('created')
+    down_checks = [check for check in list(q) if check.get_status() == 'down']
 
     counter = Counter()
     down_tags, grace_tags = set(), set()
-    for check in checks:
+    for check in down_checks:
         status = check.get_status()
         for tag in check.tags_list():
             if tag == "":
@@ -82,8 +82,7 @@ def failed_checks(request):
 
     ctx = {
         "page": "failing_checks",
-        "checks": checks,
-        "now": timezone.now(),
+        "checks": down_checks,
         "tags": counter.most_common(),
         "down_tags": down_tags,
         "grace_tags": grace_tags,
