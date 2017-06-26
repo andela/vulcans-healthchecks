@@ -71,15 +71,18 @@ def failed_checks(request):
     counter = Counter()
     down_tags, grace_tags = set(), set()
 
+    # Paginate page to contain 5 failed checks at a time.
     down_checks = Paginator(down_checks_list, 5)
-    current_page = request.GET.get('page')
+    to_page = request.GET.get('page')
 
     try:
-        down_checks_page = down_checks.page(current_page)
+        down_checks_page = down_checks.page(to_page)
 
+    # To catch string, None and non-positive page numbers.
     except PageNotAnInteger:
         down_checks_page = down_checks.page(1)
 
+    # When page number exceeds the maximum number of pages.
     except EmptyPage:
         down_checks_page = down_checks.page(down_checks.num_pages)
 
@@ -91,13 +94,31 @@ def failed_checks(request):
             counter[tag] += 1
             down_tags.add(tag)
 
+    if down_checks_page.has_next():
+        next_page = "?page={n}".format(n=down_checks_page.next_page_number())
+
+    else:
+        next_page = None
+
+    if down_checks_page.has_previous():
+        prev_page = "?page={n}".format(n=down_checks_page.previous_page_number())
+
+    else:
+        prev_page = None
+
     ctx = {
         "page": "failing_checks",
         "checks": down_checks_page,
         "tags": counter.most_common(),
         "down_tags": down_tags,
         "grace_tags": grace_tags,
-        "ping_endpoint": settings.PING_ENDPOINT
+        "ping_endpoint": settings.PING_ENDPOINT,
+        "has_other_pages": down_checks_page.has_other_pages(),
+        "has_next_page": down_checks_page.has_next(),
+        "next_page": next_page,
+        "has_prev_page": down_checks_page.has_previous(),
+        "prev_page": prev_page
+
     }
 
     return render(request, "front/failing_checks.html", ctx)
