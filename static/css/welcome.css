@@ -100,10 +100,15 @@
 }
 #collaboration a:hover,
 #collaboration a.hover,
-#collaboration a:link{
+#collaboration a:link {
     color:#00CCCC;
     text-decoration: none;
-
 }
+
+#collaboration a:visited {
+    color: #9932CC;
+    text-decoration: underline;
+}
+
 .spacing{
 padding-bottom:20px;}
