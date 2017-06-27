@@ -37,6 +37,14 @@
     {% if checks %}
         {% include "front/failing_checks_mobile.html" %}
         {% include "front/failing_checks_desktop.html" %}
+        {% if has_other_pages %}
+            {% if has_next_page %}
+                <a href="{{ next_page }}"><button class="btn btn-primary" style="float: right">Next</button></a>
+            {% endif %}
+            {% if has_prev_page %}
+            <a href="{{ prev_page }}"><button class="btn btn-primary" style="float: left">Prev</button></a>
+            {% endif %}
+        {% endif %}
     {% else %}
     <div class="alert alert-info">You don't have any failing checks yet.</div>
     {% endif %}
