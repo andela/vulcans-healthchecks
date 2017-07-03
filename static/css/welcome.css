@@ -16,6 +16,10 @@
     background: #eee;
 }
 
+#align-buttons{
+    margin-top: -20px;
+}
+
 
 #pitch {
     text-align: center;

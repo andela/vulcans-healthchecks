@@ -10,6 +10,8 @@
     </div>
     </div>
 
+
+    
     <div class="row">
     <div class="col-sm-6 col-sm-push-6">
         <p id="pitch-text">Make a HTTP GET request to this address from your cron job, daemon, script or long running task.
@@ -26,6 +28,7 @@
                 readonly />
         </div>
     </div>
+
     </div>
 
 
@@ -97,6 +100,32 @@
 <div class="row">
     <div class="col-sm-12 spacing" >
         <p id="collaboration"><a href="#task-management">Collaboratively create and manage tasks.</a></p>
+    </div>
+</div>
+
+<div class="container">
+<div class="row" style="padding-bottom:10px;">
+    <div class="col-sm-4">
+    <h2 id="pitch-subtitle">Checks</h2>
+        <p id="pitch-text">Checks is a feature in Health checks that allows you to add jobs to be monitored whether they have happened or not. Click below to access the feature</p>
+        <a class="btn btn-sm btn-default pull-right" {% if request.user.is_authenticated %} href="{% url 'hc-checks' %}" {% else %} href="{% url 'hc-login' %}" {% endif %}>
+            checks
+        </a>
+      </div>
+    <div class="col-sm-4">
+        <h2 id="pitch-subtitle">Integrations</h2>
+        <p id="pitch-text">Integrations allows you to add means of recieving alerts from Healthchecks. Currently, available communication platforms are Slack, emails, HTTP webhooks, HipChat, PagerDuty and VictorOps</p>
+        <a class="btn btn-sm btn-default pull-right" {% if request.user.is_authenticated %} href="{% url 'hc-integrations' %}" {% else %} href="{% url 'hc-login' %}" {% endif %} style="margin-top: -20px;">
+            Integrations
+        </a>
+    </div>
+    <div class="col-sm-4">
+        <h2 id="pitch-subtitle">Login</h2>
+        <p id="pitch-text">All these features are available only when logged in. To login, you only require your email address. Click below to head to the login page</p>    
+        <a class="btn btn-sm btn-default pull-right" href="{% url 'hc-login' %}" >
+            Login
+        </a>          
+    </div>
     </div>
 </div>
 
