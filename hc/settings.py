@@ -154,7 +154,6 @@ if os.path.exists(os.path.join(BASE_DIR, "hc/local_settings.py")):
     from .local_settings import *
 else:
     warnings.warn("local_settings.py not found, using defaults")
-
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
@@ -164,7 +163,7 @@ ALLOWED_HOSTS = ['*']
 
 DEBUG = False
 
-if os.path.exists(os.path.join(BASE_DIR, "hc/local_settings.py")):
+try:
     from .local_settings import *
-else:
-    warnings.warn("local_settings.py not found, using defaults")
+except ImportError:
+    pass
