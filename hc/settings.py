@@ -154,3 +154,17 @@ if os.path.exists(os.path.join(BASE_DIR, "hc/local_settings.py")):
     from .local_settings import *
 else:
     warnings.warn("local_settings.py not found, using defaults")
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
+DEBUG = False
+
+if os.path.exists(os.path.join(BASE_DIR, "hc/local_settings.py")):
+    from .local_settings import *
+else:
+    warnings.warn("local_settings.py not found, using defaults")
