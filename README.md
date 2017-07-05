@@ -176,11 +176,11 @@ There are separate Django management commands for each task:
 
     ```
     $ ./manage.py pruneusers
-    ```
+    ```    
 
-When you first try these commands on your data, it is a good idea to
-test them on a copy of your database, not on the live database right away.
-In a production setup, you should also have regular, automated database
+When you first try these commands on your data, it is a good idea to 
+test them on a copy of your database, not on the live database right away. 
+In a production setup, you should also have regular, automated database 
 backups set up.
 
 ## Integrations
@@ -194,17 +194,3 @@ To enable Pushover integration, you will need to:
   subscription type
 * add the application token and subscription URL to `hc/local_settings.py`, as
   `PUSHOVER_API_TOKEN` and `PUSHOVER_SUBSCRIPTION_URL`
-
-### Contributors
-
-[Akash Baga](https://github.com/akash-011)
-
-[Alvin Mutisya](https://github.com/Alweezy)
-
-[Eugene Badriku](https://github.com/EugeneBad)
-
-[Godwin Gitonga](https://github.com/geeeh)
-
-[Robley Gori](https://github.com/NaiRobley)
-
-[Stanley Ndagi](https://github.com/NdagiStanley)

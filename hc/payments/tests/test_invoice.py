@@ -1,4 +1,4 @@
-from unittest.mock import Mock, patch
+from mock import Mock, patch
 
 from hc.payments.models import Subscription
 from hc.test import BaseTestCase

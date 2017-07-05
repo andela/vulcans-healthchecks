@@ -3,7 +3,7 @@ import json
 from django.test.utils import override_settings
 from hc.api.models import Channel
 from hc.test import BaseTestCase
-from unittest.mock import patch
+from mock import patch
 
 
 class AddSlackTestCase(BaseTestCase):
