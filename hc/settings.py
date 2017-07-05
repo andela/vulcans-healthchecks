@@ -12,13 +12,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 import os
 import warnings
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 HOST = "localhost"
-SECRET_KEY = "---"
+SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = 'healthchecks@example.org'
 USE_PAYMENTS = False
 
@@ -109,6 +110,10 @@ if os.environ.get("DB") == "mysql":
             'TEST': {'CHARSET': 'UTF8'}
         }
     }
+
+# Update database configuration with $DATABASE_URL.
+if os.environ.get("HOST") == "HEROKU":
+    DATABASES['default'] = dj_database_url.config()
 
 LANGUAGE_CODE = 'en-us'
 
