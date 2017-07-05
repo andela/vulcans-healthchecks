@@ -3,6 +3,7 @@ django-ses-backend==0.1.1
 Django==1.10
 django_compressor==2.1
 djmail==0.11.0
+dj_database_url
 futures==3.0.3
 gunicorn
 premailer==2.9.6
