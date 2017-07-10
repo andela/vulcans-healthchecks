@@ -112,7 +112,8 @@ if os.environ.get("DB") == "mysql":
         }
     }
 
-DATABASES['default'] = dj_database_url.config()
+if os.environ.get("HOST") == "HEROKU":
+    DATABASES['default'] = dj_database_url.config()
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
