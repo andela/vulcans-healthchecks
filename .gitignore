@@ -1,7 +1,7 @@
 __pycache__/
 *.pyc
 .coverage
-hc.sqlite
+hc.sqlite3
 hc/local_settings.py
 hc/local_urls.py
 .idea/
