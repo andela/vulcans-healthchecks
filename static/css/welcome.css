@@ -161,8 +161,9 @@ padding-bottom:20px;}
   color:#00CCCC;
   font-size: 12px;
   padding: 8px 12px;
-  position: right;
+  position: absolute;
   top: 0;
+  right: 0px;
 }
 
 .dot {
