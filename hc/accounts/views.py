@@ -63,6 +63,8 @@ def login(request):
                 user = authenticate(username=email, password=password)
                 if user is not None and user.is_active:
                     auth_login(request, user)
+                    if self.request.GET.get('next'):   
+                        return redirect(self.request.GET.get('next'))
                     return redirect("hc-checks")
                 bad_credentials = True
             else:
