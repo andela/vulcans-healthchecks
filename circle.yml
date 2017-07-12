@@ -7,11 +7,3 @@ test:
     - python manage.py collectstatic --no-input
   override:    
     - python manage.py test
-  post:
-    - coverage run --omit="*/tests/*" --source=hc manage.py test    
-    - codecov 
-deployment:
-  test:
-    branch: ft-dashboard-unresolved-stuff-147180987
-    heroku:
-      appname: cd-test
