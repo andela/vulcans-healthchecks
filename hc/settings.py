@@ -17,7 +17,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 HOST = "localhost"
-SECRET_KEY = b'.+\x12\x8c\x89\xc21\xb1\xc9< \xe6\xfb\xf6 \xf6\x10M{\x93\xd6SDv'
+SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = 'healthchecks@example.org'
