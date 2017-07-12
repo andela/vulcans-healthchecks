@@ -5,9 +5,5 @@ test:
   pre:
     - python manage.py migrate
     - python manage.py collectstatic --no-input
-  override:    
+  override:
     - python manage.py test
-general:
-  branches:
-    only:
-     - develop
