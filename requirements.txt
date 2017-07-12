@@ -1,12 +1,13 @@
+dj-database-url==0.4.2
 django-appconf==1.0.1
-django-ses-backend==0.1.1
 Django==1.10
-django_compressor==2.1
+django-compressor==2.1
+django-ses-backend==0.1.1
 djmail==0.11.0
 dj_database_url
 futures==3.0.3
-gunicorn
+gunicorn==19.7.1
 premailer==2.9.6
 psycopg2==2.6.1
 requests==2.9.1
-whitenoise
+whitenoise==3.3.0
