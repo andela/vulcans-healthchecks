@@ -101,7 +101,7 @@
 #collaboration a:hover,
 #collaboration a.hover,
 #collaboration a:link {
-    color:#00CCCC;
+    color:#29B66C;
     text-decoration: none;
 }
 
@@ -158,12 +158,12 @@ padding-bottom:20px;}
 }
 
 .numbertext {
-  color:#00CCCC;
+  color: #29B66C;
   font-size: 12px;
   padding: 8px 12px;
   position: absolute;
   top: 0;
-  right: 0px;
+  right: 0px
 }
 
 .dot {
@@ -191,6 +191,6 @@ padding-bottom:20px;}
 }
 
 .slideshow-container .slides .img-responsive{
-    height: 450px;
+    height: 500px;
     width: 100%;
 }
