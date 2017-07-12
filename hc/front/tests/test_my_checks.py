@@ -37,7 +37,7 @@ class MyChecksTestCase(BaseTestCase):
         self.check.save()
 
         self.client.login(username="alice@example.org", password="password")
-        r = self.client.get("/checks/")
+        r = self.client.get("/failing_checks/")
 
         # Desktop
         self.assertContains(r, "icon-down")
