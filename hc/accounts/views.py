@@ -63,8 +63,6 @@ def login(request):
                 user = authenticate(username=email, password=password)
                 if user is not None and user.is_active:
                     auth_login(request, user)
-                    if self.request.GET.get('next'):   
-                        return redirect(self.request.GET.get('next'))
                     return redirect("hc-checks")
                 bad_credentials = True
             else:
@@ -103,6 +101,7 @@ def set_password_link_sent(request):
 
 
 def check_token(request, username, token):
+    next_link = request.GET.get('next')
     if request.user.is_authenticated and request.user.username == username:
         # User is already logged in
         return redirect("hc-checks")

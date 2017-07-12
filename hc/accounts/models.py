@@ -28,7 +28,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.team_name or self.user.email
 
-    def send_instant_login_link(self, inviting_profile=None):
+    def send_instant_login_link(self, inviting_profile=None, next_link=None):
         token = str(uuid.uuid4())
         self.token = make_password(token)
         self.save()
