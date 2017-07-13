@@ -235,6 +235,14 @@
     height: 100%;
 }
 
-.text {
+.over_text {
     color: white;
+}
+
+.spacer {
+    padding: 30px;
+}
+
+.maginer {
+    margin-left: 7%;
 }
