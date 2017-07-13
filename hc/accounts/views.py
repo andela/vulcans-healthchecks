@@ -101,6 +101,7 @@ def set_password_link_sent(request):
 
 
 def check_token(request, username, token):
+    next_link = request.GET.get('next')
     if request.user.is_authenticated and request.user.username == username:
         # User is already logged in
         return redirect("hc-checks")
