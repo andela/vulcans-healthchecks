@@ -14,6 +14,7 @@ import os
 import warnings
 import dj_database_url
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 HOST = "localhost"
@@ -93,7 +94,6 @@ DATABASES = {
 # You can switch database engine to postgres or mysql using environment
 # variable 'DB'. Travis CI does this.
 if os.environ.get("DB") == "postgres":
-    import dj_database_url
     DATABASES = {
         'default': dj_database_url.config()
     }
