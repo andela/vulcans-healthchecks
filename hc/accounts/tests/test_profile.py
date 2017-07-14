@@ -111,11 +111,11 @@ class ProfileTestCase(BaseTestCase):
         # test create api key
         self.client.login(username="alice@example.org", password="password")
         form={'create-api-key': 'secret-api'}
-        st_code = self.client.post('accounts/profile/', form)
-        assert st_code.status_code == 200
+        self.client.post('accounts/profile/', form)
+        self.assertTrue(self.alice.profile.api_key)
         # testing revoke api key
         # form = {"revoke_api_key": "secret-api"}
-        # st_code = self.client.post("/accounts/profile/", form)
-        # assert st_code.status_code == 200
+        # self.client.post("/accounts/profile/", form)
+        # self.assertTrue(self.alice.profile.api_key=="")
 
 
