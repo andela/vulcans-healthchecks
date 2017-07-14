@@ -12,3 +12,4 @@ static/.DS_Store
 webapps/*
 .idea
 .envs/
+.coveralls.yml
