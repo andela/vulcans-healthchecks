@@ -5,7 +5,7 @@
 <div class="index-bleed">
 <div class="container">
     <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 spacing" >
         <h1 id="pitch">Cron Monitoring. Get Notified When Your Cron Jobs Fail.</h1>
     </div>
     </div>
@@ -93,6 +93,11 @@
         </div>
     </div>
 </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 spacing" >
+        <p id="collaboration"><a href="#task-management">Collaboratively create and manage tasks.</a></p>
+    </div>
 </div>
 
 <div class="get-started-bleed">
@@ -280,6 +285,33 @@
         </table>
     </div>
     </div>
+    <div class="slideshow-container">
+        <div class="slides">
+            <div id="task-management" class="numbertext">1 / 2 </div>
+                <img class="img-responsive"
+                    src="{% static 'img/login_page.png' %}" style="width:100%"
+                    srcset="{% static 'img/login_page.png'%} 1x"
+                    alt="Collaborative notifications" />
+        </div>
+        <div class="slides">
+            <div class="numbertext">2 / 2</div>
+                <img class="img-responsive"
+                    src="{% static 'img/collaboration.png' %}" style="width:100%"
+                    srcset="{% static 'img/collaboration.png'%} 1x"
+                    alt="Collaborative notifications" />
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    </div>
+
+    <br>
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
 
     <div class="row">
 
@@ -325,8 +357,6 @@
     </div>
 
     </div>
-
-</div>
 {% endblock %}
 
 {% block scripts %}

@@ -17,6 +17,7 @@ from hc.api.decorators import uuid_or_400
 from hc.api.models import DEFAULT_GRACE, DEFAULT_TIMEOUT, Channel, Check, Ping
 from hc.front.forms import (AddChannelForm, AddWebhookForm, NameTagsForm,
                             TimeoutForm)
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # from itertools recipes:
@@ -30,7 +31,9 @@ def pairwise(iterable):
 @login_required
 def my_checks(request):
     q = Check.objects.filter(user=request.team.user).order_by("created")
-    checks = list(q)
+
+    # Remove downed checks from main checks page.
+    checks = [check for check in list(q) if check.get_status() != 'down']
 
     counter = Counter()
     down_tags, grace_tags = set(), set()
@@ -58,6 +61,68 @@ def my_checks(request):
     }
 
     return render(request, "front/my_checks.html", ctx)
+
+
+@login_required
+def failed_checks(request):
+    q = Check.objects.filter(user=request.team.user).order_by('created')
+    down_checks_list = [check for check in list(q) if check.get_status() == 'down']
+
+    counter = Counter()
+    down_tags, grace_tags = set(), set()
+
+    # Paginate page to contain 5 failed checks at a time.
+    down_checks = Paginator(down_checks_list, 5)
+    to_page = request.GET.get('page')
+
+    try:
+        down_checks_page = down_checks.page(to_page)
+
+    # To catch string, None and non-positive page numbers.
+    except PageNotAnInteger:
+        down_checks_page = down_checks.page(1)
+
+    # When page number exceeds the maximum number of pages.
+    except EmptyPage:
+        down_checks_page = down_checks.page(down_checks.num_pages)
+
+    for check in down_checks_page:
+        for tag in check.tags_list():
+            if tag == "":
+                continue
+
+            counter[tag] += 1
+            down_tags.add(tag)
+
+    if down_checks_page.has_next():
+        next_page = "?page={n}".format(n=down_checks_page.next_page_number())
+
+    else:
+        next_page = None
+
+    if down_checks_page.has_previous():
+        prev_page = "?page={n}".format(n=down_checks_page.previous_page_number())
+
+    else:
+        prev_page = None
+
+    # Pagination must be updated in template according to context
+    ctx = {
+        "page": "failing_checks",
+        "checks": down_checks_page,
+        "tags": counter.most_common(),
+        "down_tags": down_tags,
+        "grace_tags": grace_tags,
+        "ping_endpoint": settings.PING_ENDPOINT,
+        "has_other_pages": down_checks_page.has_other_pages(),
+        "has_next_page": down_checks_page.has_next(),
+        "next_page": next_page,
+        "has_prev_page": down_checks_page.has_previous(),
+        "prev_page": prev_page
+
+    }
+
+    return render(request, "front/failing_checks.html", ctx)
 
 
 def _welcome_check(request):

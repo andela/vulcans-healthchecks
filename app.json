@@ -1,0 +1,23 @@
+{
+  "name": "vulcans-healthchecks",
+  "scripts": {
+  },
+  "env": {
+    "DB": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
