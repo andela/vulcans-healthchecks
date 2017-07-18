@@ -9,4 +9,5 @@ static-collected
 hc.sqlite3
 .DS_Store
 static/.DS_Store
+webapps/*
 .idea

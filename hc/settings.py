@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'hc.accounts',
     'hc.api',
     'hc.front',
-    'hc.payments'
+    'hc.payments',
+    'hc.blog'
 )
 
 MIDDLEWARE = (
@@ -108,7 +109,7 @@ if os.environ.get("DB") == "mysql":
         }
     }
 
-# Update database configuration with $DATABASE_URL.
+# Update database configuration with $DATABASE_URL
 if os.environ.get("HOST") == "HEROKU":
     DATABASES['default'] = dj_database_url.config()
 
