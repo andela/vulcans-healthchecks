@@ -8,6 +8,6 @@ test:
     - python manage.py collectstatic --no-input
   override:
     - python manage.py test
-    - coverage run --source=<comma separated list of your django apps> manage.py test
+    - coverage run manage.py test
   post:
     - coveralls
