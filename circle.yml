@@ -1,6 +1,9 @@
 machine:
   python:
     version: 3.6.1
+
+environment: 
+
 test:
 
   pre:
@@ -10,4 +13,4 @@ test:
     - python manage.py test
     - coverage run manage.py test
   post:
-    - coveralls
+    - COVERALLS_REPO_TOKEN=$REPO_TOKEN coveralls  
