@@ -1,9 +1,16 @@
 machine:
   python:
     version: 3.6.1
+
+environment: 
+
 test:
+
   pre:
     - python manage.py migrate
     - python manage.py collectstatic --no-input
   override:
     - python manage.py test
+    - coverage run manage.py test
+  post:
+    - COVERALLS_REPO_TOKEN=$REPO_TOKEN coveralls  

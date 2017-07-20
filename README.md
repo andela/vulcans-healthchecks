@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/andela/vulcans-healthchecks/tree/develop.svg?style=svg)](https://circleci.com/gh/andela/vulcans-healthchecks/tree/develop)
+[![Coverage Status](https://coveralls.io/repos/github/andela/vulcans-healthchecks/badge.svg?branch=ft-add-coverage)](https://coveralls.io/github/andela/vulcans-healthchecks?branch=ft-add-coverage)
 # healthchecks
 
 ![Screenshot of Welcome page](/stuff/screenshots/welcome.png?raw=true "Welcome Page")
@@ -185,6 +186,16 @@ In a production setup, you should also have regular, automated database
 backups set up.
 
 ## Integrations
+
+## Tests Coverage
+As collaborators continuously work to improve on this project, they will create more and more tests.
+coverage will help check the coverage of these tests.
+
+```
+   $ coverage run --omit="packages and files you want omited" manage.py test
+```   
+    
+  
 
 ### Pushover
 
