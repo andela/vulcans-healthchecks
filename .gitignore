@@ -11,3 +11,8 @@ hc.sqlite3
 static/.DS_Store
 webapps/*
 .idea
+.envs/
+.coveragerc
+.vscode/
+.coveralls.yml
+
